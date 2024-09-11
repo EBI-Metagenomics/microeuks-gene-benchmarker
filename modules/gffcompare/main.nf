@@ -1,5 +1,5 @@
 process GFFCOMPARE {
-
+    tag "$meta.id $meta.tool"
     label 'process_low'
 
     container 'quay.io/biocontainers/gffcompare:0.12.6--h4ac6f70_3'
@@ -8,13 +8,12 @@ process GFFCOMPARE {
     tuple val(meta), path(ref_gff), path(tool_gff)
 
     output:
-    path "*stats"           , emit: stats
-    path "versions.yml"     , emit: versions
+    tuple val(meta), path("*.stats")         , emit: stats
+    path "versions.yml"                      , emit: versions
 
     script:
     """
-    gffcompare -r $ref_gff $tool_gff
-
+    gffcompare -r $ref_gff -o "${meta.id}_${meta.tool}" $tool_gff
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

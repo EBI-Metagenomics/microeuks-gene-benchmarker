@@ -10,6 +10,7 @@ def reformat_metaeuk(gff, sample_id):
 def reformat_galba_braker(gtf, underscore_count, sample_id, tool_id):
     with open(gtf, 'r') as galba_gtf_in, open(f'{sample_id}.{tool_id}.reformatted.gtf', 'w') as galba_gtf_out:
         for line in galba_gtf_in:
+            # TODO: resolve names and underscores
             scaffold = line.split('\t')[0]
             line_data = '\t'.join(line.split('\t')[1:])
             simplified = '_'.join(scaffold.split('_')[0:underscore_count])

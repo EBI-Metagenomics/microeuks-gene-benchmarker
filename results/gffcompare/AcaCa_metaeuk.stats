@@ -1,0 +1,30 @@
+# gffcompare v0.12.6 | Command line was:
+#gffcompare -r AcaCa.gff -o AcaCa_metaeuk AcaCa.metaeuk.reformatted.gff
+#
+
+#= Summary for dataset: AcaCa.metaeuk.reformatted.gff 
+#     Query mRNAs :  108772 in   15348 loci  (12718 multi-exon transcripts)
+#            (12710 multi-transcript loci, ~7.1 transcripts per locus)
+# Reference mRNAs :   14969 in   14965 loci  (13674 multi-exon)
+# Super-loci w/ reference transcripts:    14607
+#-----------------| Sensitivity | Precision  |
+        Base level:    97.3     |    65.1    |
+        Exon level:     9.1     |     7.4    |
+      Intron level:     7.2     |    10.4    |
+Intron chain level:     1.0     |     1.1    |
+  Transcript level:     0.9     |     0.1    |
+       Locus level:     0.9     |     0.9    |
+
+     Matching intron chains:     141
+       Matching transcripts:     141
+              Matching loci:     141
+
+          Missed exons:    4619/105747	(  4.4%)
+           Novel exons:    2477/130181	(  1.9%)
+        Missed introns:   21543/90778	( 23.7%)
+         Novel introns:    1026/62690	(  1.6%)
+           Missed loci:     173/14965	(  1.2%)
+            Novel loci:     691/15348	(  4.5%)
+
+ Total union super-loci across all input datasets: 15298 
+108772 out of 108772 consensus transcripts written in AcaCa_metaeuk.annotated.gtf (0 discarded as redundant)

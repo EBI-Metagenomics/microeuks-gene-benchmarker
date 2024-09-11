@@ -1,0 +1,30 @@
+# gffcompare v0.12.6 | Command line was:
+#gffcompare -r LasPus.gff -o LasPus_galba LasPus.galba.reformatted.gtf
+#
+
+#= Summary for dataset: LasPus.galba.reformatted.gtf 
+#     Query mRNAs :   10641 in   10382 loci  (8133 multi-exon transcripts)
+#            (183 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :    9861 in    9860 loci  (8055 multi-exon)
+# Super-loci w/ reference transcripts:        0
+#-----------------| Sensitivity | Precision  |
+        Base level:     0.0     |     0.0    |
+        Exon level:     0.0     |     0.0    |
+      Intron level:     0.0     |     0.0    |
+Intron chain level:     0.0     |     0.0    |
+  Transcript level:     0.0     |     0.0    |
+       Locus level:     0.0     |     0.0    |
+
+     Matching intron chains:       0
+       Matching transcripts:       0
+              Matching loci:       0
+
+          Missed exons:   32299/32299	(100.0%)
+           Novel exons:   31812/31812	(100.0%)
+        Missed introns:   22438/22438	(100.0%)
+         Novel introns:   21187/21187	(100.0%)
+           Missed loci:    9860/9860	(100.0%)
+            Novel loci:   10382/10382	(100.0%)
+
+ Total union super-loci across all input datasets: 10382 
+10641 out of 10641 consensus transcripts written in LasPus_galba.annotated.gtf (0 discarded as redundant)
