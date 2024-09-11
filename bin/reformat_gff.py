@@ -1,4 +1,4 @@
-import sys
+#!/usr/bin/env python3
 import argparse
 
 def reformat_metaeuk(gff, sample_id):
@@ -21,14 +21,13 @@ if __name__ == "__main__":
     parser.add_argument("-s", "--sample")
     parser.add_argument("-g", "--galba_gtf")
     parser.add_argument("-b", "--braker_gtf")
-    parser.add_argument("-n", "--sep_num")
+    parser.add_argument("-n", "--sep_num", default=2, type=int)
     parser.add_argument("-m", "--metaeuk_gff")
     args = parser.parse_args()
     if args.galba_gtf or args.braker_gtf and not args.sep_num:
-        print('argument -n/--sep_num is needed to shorrten the scaffold name')
-        exit
+        print('argument -n/--sep_num is needed to shorrten the scaffold name. Using default')
     if args.metaeuk_gff:
-        reformat_metaeuk(args.gff, args.sample)
+        reformat_metaeuk(args.metaeuk_gff, args.sample)
     if args.galba_gtf:
         reformat_galba_braker(args.galba_gtf, int(args.sep_num), args.sample, 'galba')
     if args.braker_gtf:

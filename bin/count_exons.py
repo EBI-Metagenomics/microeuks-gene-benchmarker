@@ -17,7 +17,6 @@ def count_exons_per_gene(gff_file):
 
             if feature_type == "gene":
                 if gene:
-
                     exon_count.append(n_exons)
                     n_exons = 0
                     gene = None
