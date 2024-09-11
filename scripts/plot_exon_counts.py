@@ -6,28 +6,20 @@ import os
 
 def plot_species(data, species, tool_order, tool_palette, output_folder):
     species_data = data[data['species'] == species].copy()  # Use .copy() to avoid SettingWithCopyWarning
-    
-    # Set ggplot2-style aesthetics
-    sns.set(style="whitegrid")
-    
-    plt.figure(figsize=(12, 8))
-
-    # Sort the data by tool for consistent color mapping
     species_data.loc[:, 'tool'] = pd.Categorical(species_data['tool'], categories=tool_order, ordered=True)
-
+    
+    sns.set(style="whitegrid")
+    plt.figure(figsize=(12, 8))
     sns.barplot(x='exons_per_gene', y='gene_counts', hue='tool', data=species_data, palette=tool_palette)
     
-    # Set ggplot2-style axis and title formatting
-    plt.title(f'Exon Counts for Species: {species}', fontsize=16, weight='bold')
+    # Set formatting
+    plt.title(f'Exon Counts for Species: {species}', fontsize=16, weight='bold', loc='left')
     plt.xlabel('Number of exons per gene', fontsize=14)
     plt.ylabel('Gene counts', fontsize=14)
     plt.xticks(rotation=0, fontsize=12)
     plt.yticks(fontsize=12)
     plt.xlim(-0.5, 9.5)  # Limit x-axis to 10 exons
-    
-    # Move legend outside the plot
     plt.legend(title='Tool', title_fontsize=14, fontsize=12, loc='upper right', bbox_to_anchor=(1, 1))
-
     plt.tight_layout()
 
     output_file = os.path.join(output_folder, f'{species}_exon_counts.png')
@@ -62,7 +54,6 @@ def main(input_file, output_folder):
     unique_tools = sorted(melted_data['tool'].unique())  # Sorting the tools to ensure consistent order
     tool_palette = sns.color_palette('Set2', len(unique_tools))
 
-    # Plot each species
     unique_species = melted_data['species'].unique()
     for species in unique_species:
         plot_species(melted_data, species, unique_tools, tool_palette, output_folder)
