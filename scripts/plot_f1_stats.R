@@ -23,13 +23,13 @@ base_plot <- ggplot(f1_file[f1_file$feature == 'Base', ], aes(x=sensitivity, y=p
   geom_point(size=5) + ggtitle('Base') + scale_colour_manual(values=c("grey", "#db5a6b", "#E69F00", "#56B4E9","#009999"))
 
 exon_plot <- ggplot(f1_file[f1_file$feature == 'Exon', ], aes(x=sensitivity, y=precision, shape=tool, colour=sample)) + 
-  geom_point(size=5) + ggtitle('Exon') + scale_colour_manual(values=c(AcaCa="grey",BlaHom="#db5a6b",LasPus="#E69F00", MalRes="#56B4E9", OstLuc="#009999"))
+  geom_point(size=5) + ggtitle('Exon') + scale_colour_manual(values=c("grey", "#db5a6b", "#E69F00", "#56B4E9","#009999"))
 
 intron_plot <- ggplot(f1_file[f1_file$feature == 'Intron', ], aes(x=sensitivity, y=precision, shape=tool, colour=sample)) + 
-  geom_point(size=5) + ggtitle('Intron') + scale_colour_manual(values=c(AcaCa="grey",BlaHom="#db5a6b",LasPus="#E69F00", MalRes="#56B4E9", OstLuc="#009999"))
+  geom_point(size=5) + ggtitle('Intron') + scale_colour_manual(values=c("grey", "#db5a6b", "#E69F00", "#56B4E9","#009999"))
 
 transcript_plot <- ggplot(f1_file[f1_file$feature == 'Transcript', ], aes(x=sensitivity, y=precision, shape=tool, colour=sample)) + 
-  geom_point(size=5) + ggtitle('Transcript') + scale_colour_manual(values=c(AcaCa="grey",BlaHom="#db5a6b",LasPus="#E69F00", MalRes="#56B4E9", OstLuc="#009999"))
+  geom_point(size=5) + ggtitle('Transcript') + scale_colour_manual(values=c("grey", "#db5a6b", "#E69F00", "#56B4E9","#009999"))
 
 # combine_plots
 combined_plot <- ggarrange(base_plot, exon_plot, intron_plot, transcript_plot,
