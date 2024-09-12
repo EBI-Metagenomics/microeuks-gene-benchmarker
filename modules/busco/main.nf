@@ -1,16 +1,16 @@
 process BUSCO {
     label 'process_medium'
-    tag "${bin}"
+    tag "${meta.id}"
 
     container 'quay.io/biocontainers/busco:5.4.7--pyhdfd78af_0'
 
     input:
-    path fasta
+    tuple val(meta), path(fasta)
     path busco_db
 
     output:
-    path "short_summary.specific*.txt", emit: busco_summary
-    path "versions.yml"                , emit: versions
+    tuple val(meta), path("short_summary.specific*.txt"), emit: busco_summary
+    path "versions.yml"                                 , emit: versions
 
     script:
     """

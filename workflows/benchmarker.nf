@@ -1,9 +1,6 @@
-include { REFORMAT_GFF       } from '../modules/reformat_gff'
-include { GFFCOMPARE         } from '../modules/gffcompare'
-include { PLOT_F1_STATS      } from '../modules/plot_f1_stats'
-include { CALCULATE_F1_SCORE } from '../modules/calculate_f1_score'
+include { PROCESS_GFFS } from '../subworkflows/subwf-gff_comparison'
+include { PROCESS_EXONS } from '../subworkflows/subwf-exons'
 
-include { PROCESS_EXONS      } from '../modules/process_exons'
 // ---------------- Notes ----------------
 
 // Input formats:
@@ -17,10 +14,10 @@ include { PROCESS_EXONS      } from '../modules/process_exons'
 
 // ---------------- Notes end -------------
 
-reference_gff = channel.fromPath("tests/data/ref/*")
-braker = channel.fromPath("tests/data/braker/*/*")
-galba = channel.fromPath("tests/data/galba/*/*")
-metaeuk = channel.fromPath("tests/data/metaeuk/*")
+reference_gff = channel.fromPath("tests/data/ref/*.gff")
+braker = channel.fromPath("tests/data/braker/*/*.gtf")
+galba = channel.fromPath("tests/data/galba/*/*.gtf")
+metaeuk = channel.fromPath("tests/data/metaeuk/*.gff")
 
 workflow BENCHMARKER {
 
@@ -42,36 +39,10 @@ workflow BENCHMARKER {
     galba_channel = galba.map(split_braker)
     metaeuk_channel = metaeuk.map(split_by_name)
 
-    // [meta, braker.gft, galba.gtf, metaeuk.gff]
-    REFORMAT_GFF(braker_channel.join(galba_channel).join(metaeuk_channel))
-
-    // -------- Compare GFFs --------
-
-    gffcompare_input = ref_channel.join(REFORMAT_GFF.out.reformatted).map {meta, ref, b, g, m ->
-        def meta_braker = meta.clone()
-        meta_braker.tool = "braker"
-
-        def meta_galba = meta.clone()
-        meta_galba.tool = "galba"
-
-        def meta_metaeuk = meta.clone()
-        meta_metaeuk.tool = "metaeuk"
-
-        return tuple([
-            tuple(meta_braker, ref, b),
-            tuple(meta_galba, ref, g),
-            tuple(meta_metaeuk, ref, m)
-        ])
-    }.flatMap()
-
-    GFFCOMPARE(gffcompare_input)
-
-    CALCULATE_F1_SCORE(GFFCOMPARE.out.stats)
-
-    PLOT_F1_STATS(CALCULATE_F1_SCORE.out.f1_scores)
+    // -------- GFFs/GTFs --------
+    PROCESS_GFFS( braker_channel, galba_channel, metaeuk_channel, ref_channel )
 
     // -------- Exons --------
-
-    // PROCESS_EXONS(REFORMAT_GFF.out.reformatted.flatten())
+    PROCESS_EXONS( PROCESS_GFFS.out.reformatted_gffs )
 
 }
