@@ -1,9 +1,10 @@
-include { PROCESS_GFFS } from '../subworkflows/subwf-gff_comparison'
-include { PROCESS_EXONS } from '../subworkflows/subwf-exons'
+include { PROCESS_GFFS         } from '../subworkflows/subwf-gff_comparison'
+include { PROCESS_EXONS        } from '../subworkflows/subwf-exons'
+include { PROCESS_COMPLETENESS } from '../subworkflows/subwf-completeness_estimation'
 
 // ---------------- Notes ----------------
 
-// Input formats:
+// Input formats GFF/GTF:
 // References: all gffs in one folder naming Organism.gff
 // MetaEuk:    all gFf in one folder naming Organism.gff
 // GALBA:      all gTf in folder Organism/galba.gtf
@@ -15,9 +16,14 @@ include { PROCESS_EXONS } from '../subworkflows/subwf-exons'
 // ---------------- Notes end -------------
 
 reference_gff = channel.fromPath("tests/data/ref/*.gff")
-braker = channel.fromPath("tests/data/braker/*/*.gtf")
-galba = channel.fromPath("tests/data/galba/*/*.gtf")
-metaeuk = channel.fromPath("tests/data/metaeuk/*.gff")
+braker_gtf    = channel.fromPath("tests/data/braker/*/*.gtf")
+galba_gtf     = channel.fromPath("tests/data/galba/*/*.gtf")
+metaeuk_gff   = channel.fromPath("tests/data/metaeuk/*.gff")
+
+reference_proteins = channel.fromPath("tests/data/ref/*.fa")
+braker_proteins    = channel.fromPath("tests/data/braker/*/*.aa")
+galba_proteins     = channel.fromPath("tests/data/galba/*/*.aa")
+metaeuk_proteins   = channel.fromPath("tests/data/metaeuk/*.fas")
 
 workflow BENCHMARKER {
 
@@ -34,15 +40,23 @@ workflow BENCHMARKER {
         return tuple(meta, file);
     }
 
-    ref_channel = reference_gff.map(split_by_name)
-    braker_channel = braker.map(split_braker)
-    galba_channel = galba.map(split_braker)
-    metaeuk_channel = metaeuk.map(split_by_name)
+    ref_gff_channel = reference_gff.map(split_by_name)
+    braker_gtf_channel = braker_gtf.map(split_braker)
+    galba_gtf_channel = galba_gtf.map(split_braker)
+    metaeuk_gff_channel = metaeuk_gff.map(split_by_name)
+
+    ref_proteins_channel = reference_proteins.map(split_by_name)
+    braker_proteins_channel = braker_proteins.map(split_braker)
+    galba_proteins_channel = galba_proteins.map(split_braker)
+    metaeuk_proteins_channel = metaeuk_proteins.map(split_by_name)
 
     // -------- GFFs/GTFs --------
-    PROCESS_GFFS( braker_channel, galba_channel, metaeuk_channel, ref_channel )
+    PROCESS_GFFS( braker_gtf_channel, galba_gtf_channel, metaeuk_gff_channel, ref_gff_channel )
 
-    // -------- Exons --------
+    // -------- EXONS --------
     PROCESS_EXONS( PROCESS_GFFS.out.reformatted_gffs )
+
+    // -------- COMPLETENESS ESTIMATION --------
+    PROCESS_COMPLETENESS(braker_proteins_channel, galba_proteins_channel, metaeuk_proteins_channel, ref_proteins_channel, params.busco_db)
 
 }
