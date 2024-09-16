@@ -1,5 +1,5 @@
 process CALCULATE_F1_SCORE {
-
+    tag '${meta.id}'
     label 'process_low'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?

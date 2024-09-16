@@ -9,7 +9,7 @@ process BUSCO {
     path busco_db
 
     output:
-    tuple val(meta), path("*specific*.txt"), emit: busco_summary
+    tuple val(meta), path("out_${meta.id}_${meta.tool}/*specific*.txt"), emit: busco_summary
     path("*stats.txt")                     , emit: busco_stats
     path "versions.yml"                    , emit: versions
 

@@ -1,5 +1,5 @@
 process PLOT_F1_STATS {
-
+    tag '${meta.id}'
     label 'process_low'
 
     container "quay.io/microbiome-informatics/microeuks-benchmark-r-scripts:latest"
