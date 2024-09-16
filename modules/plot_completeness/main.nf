@@ -1,6 +1,5 @@
 process PLOT_COMPLETENESS {
 
-    tag "$meta.id"
     label 'process_low'
 
     container "quay.io/microbiome-informatics/microeuks-benchmark-python-scripts:latest"
