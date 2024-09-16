@@ -7,7 +7,7 @@ process REFORMAT_GFF {
         'quay.io/biocontainers/biopython:1.75' }"
 
     input:
-    tuple val(meta), path(braker), path(galba), path(metaeuk)
+    tuple val(meta), path(ref), path(braker), path(galba), path(metaeuk)
 
     output:
     tuple val(meta), path("*braker.reformatted.gtf"), path("*galba.reformatted.gtf"), path("*metaeuk.reformatted.gff")   , emit: reformatted
@@ -17,6 +17,7 @@ process REFORMAT_GFF {
     """
     reformat_gff.py \
                  -s $meta.id \
+                 --ref_gff $ref \
                  --galba_gtf $galba \
                  --braker_gtf $braker \
                  --metaeuk_gff $metaeuk
@@ -29,3 +30,5 @@ process REFORMAT_GFF {
     END_VERSIONS
     """
 }
+
+
