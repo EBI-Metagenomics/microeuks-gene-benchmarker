@@ -20,7 +20,7 @@ workflow PROCESS_GFFS {
     main:
 
     // [meta, braker.gft, galba.gtf, metaeuk.gff]
-    REFORMAT_GFF(braker_channel.join(galba_channel).join(metaeuk_channel))
+    REFORMAT_GFF(ref_channel.join(braker_channel).join(galba_channel).join(metaeuk_channel))
 
     // -------- Compare GFFs --------
 
