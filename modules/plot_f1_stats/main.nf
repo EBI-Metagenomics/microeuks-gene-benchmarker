@@ -5,11 +5,11 @@ process PLOT_F1_STATS {
     container "quay.io/microbiome-informatics/microeuks-benchmark-python-scripts:latest"
 
     input:
-    tuple val(meta), path(stats)
+    path(stats)
 
     output:
-    tuple val(meta), path("f1_stats.pdf")      , emit: f1_plot
-    path "versions.yml"                        , emit: versions
+    path("f1_stats.pdf")      , emit: f1_plot
+    path "versions.yml"       , emit: versions
 
     script:
     """

@@ -29,7 +29,7 @@ workflow BENCHMARKER {
 
     def split_by_name = { file ->
         def meta = [];
-        def name = file.baseName;
+        def name = file.getBaseName().split(/\./)[0]
         meta = ["id": name];
         return tuple(meta, file);
     }

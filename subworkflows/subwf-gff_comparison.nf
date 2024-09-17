@@ -42,10 +42,15 @@ workflow PROCESS_GFFS {
     }.flatMap()
 
     GFFCOMPARE(gffcompare_input)
-
     CALCULATE_F1_SCORE(GFFCOMPARE.out.stats)
+    
+    CALCULATE_F1_SCORE.out.f1_scores.view()
 
-    //PLOT_F1_STATS(CALCULATE_F1_SCORE.out.f1_scores)
+    f1_channel = CALCULATE_F1_SCORE.out.f1_scores
+    .map { meta, path -> path }  
+    .collectFile(name: 'combined_f1.stats', newLine: true)
+
+    PLOT_F1_STATS(f1_channel)
 
     emit:
     reformatted_gffs = REFORMAT_GFF.out.reformatted
