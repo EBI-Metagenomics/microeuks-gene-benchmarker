@@ -1,5 +1,8 @@
+<<<<<<< HEAD:bin/plot_completeness.py
 #!/usr/bin/env python3
 
+=======
+>>>>>>> dev:scripts/plot_completeness.py
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -26,4 +29,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Plot BUSCO completeness of predicted proteins.")
     parser.add_argument('file_path', type=str, help='Path to the input CSV file')
     args = parser.parse_args()
+<<<<<<< HEAD:bin/plot_completeness.py
     plot_busco_completeness(args.file_path)
+=======
+    plot_busco_completeness(args.file_path)
+>>>>>>> dev:scripts/plot_completeness.py
