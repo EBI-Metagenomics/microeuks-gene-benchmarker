@@ -43,8 +43,6 @@ workflow PROCESS_GFFS {
 
     GFFCOMPARE(gffcompare_input)
     CALCULATE_F1_SCORE(GFFCOMPARE.out.stats)
-    
-    CALCULATE_F1_SCORE.out.f1_scores.view()
 
     f1_channel = CALCULATE_F1_SCORE.out.f1_scores
     .map { meta, path -> path }  
