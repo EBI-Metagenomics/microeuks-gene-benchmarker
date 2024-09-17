@@ -2,7 +2,7 @@ process PLOT_F1_STATS {
     tag '${meta.id}'
     label 'process_low'
 
-    container "quay.io/microbiome-informatics/microeuks-benchmark-r-scripts:latest"
+    container "quay.io/microbiome-informatics/microeuks-benchmark-python-scripts:latest"
 
     input:
     tuple val(meta), path(stats)
@@ -13,11 +13,13 @@ process PLOT_F1_STATS {
 
     script:
     """
-    plot_f1_stats.R $stats
+    plot_f1_stats.py $stats
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        R: \$( R --version | head -1 | cut -d' ' -f3 )
+        python: \$(python --version 2>&1 | sed 's/Python //g')
+        biopython: \$(python -c "import pkg_resources; print(pkg_resources.get_distribution('biopython').version)")
     END_VERSIONS
     """
 }
+
