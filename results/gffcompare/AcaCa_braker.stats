@@ -1,0 +1,30 @@
+# gffcompare v0.12.6 | Command line was:
+#gffcompare -r AcaCa.gff -o AcaCa_braker AcaCa.braker.reformatted.gtf
+#
+
+#= Summary for dataset: AcaCa.braker.reformatted.gtf 
+#     Query mRNAs :   17051 in   14327 loci  (15718 multi-exon transcripts)
+#            (2414 multi-transcript loci, ~1.2 transcripts per locus)
+# Reference mRNAs :   14969 in   14965 loci  (13674 multi-exon)
+# Super-loci w/ reference transcripts:    12991
+#-----------------| Sensitivity | Precision  |
+        Base level:    94.1     |    86.8    |
+        Exon level:    76.6     |    67.8    |
+      Intron level:    81.7     |    71.5    |
+Intron chain level:    28.3     |    24.6    |
+  Transcript level:    25.9     |    22.7    |
+       Locus level:    25.9     |    26.9    |
+
+     Matching intron chains:    3871
+       Matching transcripts:    3871
+              Matching loci:    3871
+
+          Missed exons:    4289/105747	(  4.1%)
+           Novel exons:   15905/119993	( 13.3%)
+        Missed introns:    4330/90778	(  4.8%)
+         Novel introns:   14993/103629	( 14.5%)
+           Missed loci:     856/14965	(  5.7%)
+            Novel loci:    1104/14327	(  7.7%)
+
+ Total union super-loci across all input datasets: 14095 
+17051 out of 17051 consensus transcripts written in AcaCa_braker.annotated.gtf (0 discarded as redundant)
