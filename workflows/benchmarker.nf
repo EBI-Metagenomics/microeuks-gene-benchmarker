@@ -11,7 +11,7 @@ include { PROCESS_COMPLETENESS } from '../subworkflows/subwf-completeness_estima
 // BRAKER:     all gTf in folder Organism/galba.gtf
 
 // TODO: for real usage change [-1] in split_braker function to [-2]
-// TODO: because format lickly would be Orgamism/GALBA/galba.gft or Orgamism/BRAKER/braker.gft
+// TODO: because format likely would be Organism/GALBA/galba.gft or Organism/BRAKER/braker.gft
 
 // ---------------- Notes end -------------
 
