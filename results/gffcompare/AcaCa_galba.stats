@@ -1,0 +1,30 @@
+# gffcompare v0.12.6 | Command line was:
+#gffcompare -r AcaCa.gff -o AcaCa_galba AcaCa.galba.reformatted.gtf
+#
+
+#= Summary for dataset: AcaCa.galba.reformatted.gtf 
+#     Query mRNAs :   15588 in   15229 loci  (14061 multi-exon transcripts)
+#            (271 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :   14969 in   14965 loci  (13674 multi-exon)
+# Super-loci w/ reference transcripts:    14607
+#-----------------| Sensitivity | Precision  |
+        Base level:    97.0     |    94.0    |
+        Exon level:    89.2     |    87.4    |
+      Intron level:    92.7     |    91.1    |
+Intron chain level:    62.5     |    60.8    |
+  Transcript level:    57.1     |    54.9    |
+       Locus level:    57.1     |    56.2    |
+
+     Matching intron chains:    8552
+       Matching transcripts:    8552
+              Matching loci:    8551
+
+          Missed exons:    1557/105747	(  1.5%)
+           Novel exons:    5288/107832	(  4.9%)
+        Missed introns:    3815/90778	(  4.2%)
+         Novel introns:    5472/92352	(  5.9%)
+           Missed loci:     243/14965	(  1.6%)
+            Novel loci:     511/15229	(  3.4%)
+
+ Total union super-loci across all input datasets: 15118 
+15588 out of 15588 consensus transcripts written in AcaCa_galba.annotated.gtf (0 discarded as redundant)

@@ -1,0 +1,30 @@
+# gffcompare v0.12.6 | Command line was:
+#gffcompare -r LasPus.gff -o LasPus_metaeuk LasPus.metaeuk.reformatted.gff
+#
+
+#= Summary for dataset: LasPus.metaeuk.reformatted.gff 
+#     Query mRNAs :   52138 in   11296 loci  (8004 multi-exon transcripts)
+#            (8001 multi-transcript loci, ~4.6 transcripts per locus)
+# Reference mRNAs :    9861 in    9860 loci  (8055 multi-exon)
+# Super-loci w/ reference transcripts:     9715
+#-----------------| Sensitivity | Precision  |
+        Base level:    97.5     |    77.5    |
+        Exon level:    17.6     |    12.1    |
+      Intron level:     9.7     |    11.9    |
+Intron chain level:     3.3     |     3.3    |
+  Transcript level:     2.7     |     0.5    |
+       Locus level:     2.7     |     2.3    |
+
+     Matching intron chains:     263
+       Matching transcripts:     263
+              Matching loci:     263
+
+          Missed exons:    2888/32299	(  8.9%)
+           Novel exons:    4463/46783	(  9.5%)
+        Missed introns:    4484/22438	( 20.0%)
+         Novel introns:    1771/18233	(  9.7%)
+           Missed loci:      90/9860	(  0.9%)
+            Novel loci:    1560/11296	( 13.8%)
+
+ Total union super-loci across all input datasets: 11275 
+52138 out of 52138 consensus transcripts written in LasPus_metaeuk.annotated.gtf (0 discarded as redundant)

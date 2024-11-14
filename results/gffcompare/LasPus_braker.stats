@@ -1,0 +1,30 @@
+# gffcompare v0.12.6 | Command line was:
+#gffcompare -r LasPus.gff -o LasPus_braker LasPus.braker.reformatted.gtf
+#
+
+#= Summary for dataset: LasPus.braker.reformatted.gtf 
+#     Query mRNAs :   11516 in   10155 loci  (8605 multi-exon transcripts)
+#            (1045 multi-transcript loci, ~1.1 transcripts per locus)
+# Reference mRNAs :    9861 in    9860 loci  (8055 multi-exon)
+# Super-loci w/ reference transcripts:        0
+#-----------------| Sensitivity | Precision  |
+        Base level:     0.0     |     0.0    |
+        Exon level:     0.0     |     0.0    |
+      Intron level:     0.0     |     0.0    |
+Intron chain level:     0.0     |     0.0    |
+  Transcript level:     0.0     |     0.0    |
+       Locus level:     0.0     |     0.0    |
+
+     Matching intron chains:       0
+       Matching transcripts:       0
+              Matching loci:       0
+
+          Missed exons:   32299/32299	(100.0%)
+           Novel exons:   32510/32510	(100.0%)
+        Missed introns:   22438/22438	(100.0%)
+         Novel introns:   21200/21200	(100.0%)
+           Missed loci:    9860/9860	(100.0%)
+            Novel loci:   10155/10155	(100.0%)
+
+ Total union super-loci across all input datasets: 10155 
+11516 out of 11516 consensus transcripts written in LasPus_braker.annotated.gtf (0 discarded as redundant)
